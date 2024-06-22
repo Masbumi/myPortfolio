@@ -1,4 +1,4 @@
-/* General Styles */
+
 * {
     padding: 0;
     margin: 0;
@@ -12,12 +12,18 @@
     background: #222831;
     overflow-x: hidden;
   }
+
+  #container{
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
   
-  /* Navbar Styles */
+ 
   nav {
-    background: #eeeeee53;
+    background: #eeeeeec5;
     height: 50px;
-    width: 400px; /* Fixed width for all devices */
+    width: 400px;
     border-radius: 50px;
     margin: 10px auto;
     display: block;
@@ -30,6 +36,7 @@
     overflow: hidden;
     box-shadow: 0px 2px 5px #000000eb;
     animation: slideDownLoading 400ms ease, slideUpLoading 300ms ease 400ms forwards;
+    border: 2px solid white;
   }
   
   
@@ -42,9 +49,9 @@
   
   nav ul li {
     display: inline-block;
-    line-height: 50px;
+    line-height: 46px;
     vertical-align: middle;
-    margin: 0 10px; /* Add spacing between icons */
+    margin: 0 10px;
   }
   
   nav ul li a {
@@ -57,34 +64,71 @@
     white-space: nowrap;
     letter-spacing: 1.5px; 
     border-radius: 10px;
-    transition: background-color 0.3s ease, font-size 0.3s ease-in-out, color 0.3s ease-in-out; /* Add color transition */
+    transition: background-color 0.3s ease, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
   }
   
   nav ul li a:hover {
-    font-size: 18px;
-    animation: rainbow 1500ms linear infinite; /* Apply rainbow animation */
+    font-size: 17px;
+    animation: rainbow 1500ms linear infinite;
   }
   
   section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     min-height: 650px;
-    padding: 100px 20vw;
+    overflow: hidden;
+    display: block;
     
   }
-  
-  .main{
-    background: #222831;;
-    width: 100%;
+  .sctIntro{
+    min-height: 650px;
+    position: relative;
   }
   
+  .mainIntro{
+    width: 100%;
+    height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mainIntro .pictPart{
+    height: 500px;
+    width: 500px;
+    background: #000;
+  }
+
+  .mainIntro .deskPart{
+    height: 500px;
+    width: 500px;;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .bgIntro{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+  }
+  .bgIntro .bgwave1{
+    width: 100%;
+    height: 100%;
+    background-image: url(wave-haikei.svg);
+    animation: rotate 10s linear infinite;
+;
+  }
+
   .second{
     background: #31363F;
   }
+
+
   
-  /* Animation Styles */
+ 
   @keyframes slideDownLoading {
     from {
       transform: translateY(-135%) translateX(-50%);
@@ -100,6 +144,15 @@
     }
     to {
       transform: translateY(0) translateX(-50%);
+    }
+  }
+
+  @keyframes rotate{
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
     }
   }
   
@@ -120,7 +173,7 @@
       width: 100%;
     }
     nav ul li {
-      margin: 0 -5px; /* Reduced spacing between icons */
+      margin: 0 -5px;
     }
   }
   
@@ -129,7 +182,7 @@
         width: 100%;
     }
     nav ul li {
-      margin: 0 -10px; /* Reduced spacing between icons */
+      margin: 0 -10px;
     }
     nav ul li a {
       font-size: 12px;
@@ -140,19 +193,19 @@
   }
   
   
-  /* Very Small Screen Styles */
+ 
   @media (max-width: 150px) {
-      /* Hide all elements except the body */
+     
       nav, nav ul, nav li, nav a {
         display: none;
       }
     
       body {
-        background: none; /* Remove background */
+        background: none;
       }
     
       body::before {
-        content: "Yang bener aja mas, mana ada hp sekecil ini"; /* Display the text */
+        content: "Yang bener aja mas, mana ada hp sekecil ini";
         display: block;
         font-size: 16px;
         text-align: center;
