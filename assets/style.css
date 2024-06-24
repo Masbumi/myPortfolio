@@ -6,12 +6,61 @@
     text-decoration: none;
     list-style: none;
   }
+
   
   body {
     font-family: "Lato", sans-serif;
-    background: #222831;
     overflow-x: hidden;
+    background: rgb(33, 33, 33);
   }
+
+  .line {
+    position: fixed;
+    width: 100%;
+    height: 2px;
+    bottom: 50%;
+    left: 20%;
+    rotate: 49deg;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    animation: move 7s linear infinite;
+  }
+  @keyframes move {
+    0% {
+        transform: translateX(-100%);
+    }
+    20% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(100%); /* Stay at the end for 5 seconds */
+    }
+  }
+
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .star {
+      width: 2px;
+      height: 2px;
+      clip-path: circle(50%);
+      position: absolute;
+      animation: twinkle 2s infinite alternate;
+  }
+
+@keyframes twinkle {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  
 
   #container{
     padding: 0;
@@ -20,8 +69,9 @@
   }
   
  
-  nav {
-    background: #eeeeeec5;
+  nav { 
+    background: #eeeeeec0;
+    backdrop-filter: blur(1px);
     height: 50px;
     width: 400px;
     border-radius: 50px;
@@ -35,7 +85,7 @@
     transform: translateX(-50%);
     overflow: hidden;
     box-shadow: 0px 2px 5px #000000eb;
-    animation: slideDownLoading 400ms ease, slideUpLoading 300ms ease 400ms forwards;
+    animation: slideDownLoading 800ms ease, slideUpLoading 300ms ease forwards 800ms;
     border: 2px solid white;
   }
   
@@ -65,6 +115,7 @@
     letter-spacing: 1.5px; 
     border-radius: 10px;
     transition: background-color 0.3s ease, font-size 0.3s ease-in-out, color 0.3s ease-in-out;
+
   }
   
   nav ul li a:hover {
@@ -73,14 +124,14 @@
   }
   
   section {
-    min-height: 650px;
+    height: 650px;
     overflow: hidden;
     display: block;
     
   }
   .sctIntro{
-    min-height: 650px;
     position: relative;
+    right: 70px;
   }
   
   .mainIntro{
@@ -93,38 +144,114 @@
     z-index: 1;
   }
 
-  .mainIntro .pictPart{
-    height: 500px;
+  .mainIntro .pictPart {
+    height: 800px;
+    width: 800px;
+    clip-path: circle(50%);
+    position: relative; /* Penting untuk anak elemen dengan posisi absolute */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    animation: fadeIn 1s ease-in-out;
+}
+
+.mainIntro .pictPart .pictMoon {
+  width: 100%;
+  height: 100%;
+  position: absolute; /* Posisi absolute untuk menempatkan di tengah */
+  z-index: 0; /* Supaya berada di atas pictProf */
+  animation: rotate 50s linear infinite;
+
+}
+
+.mainIntro .pictPart .pictMoon .moon{
+width: 50px;
+height: 50px;
+background-image: url(moondd.png);
+background-size: cover;
+background-position: center;
+clip-path: circle(50%);
+position: absolute; /* Center the moon */
+top: 50%;
+left: 10%;
+transform: translate(-50%, -50%);
+border-radius: 50%;
+clip-path: circle(50%);
+}
+
+.mainIntro .pictPart .pictCover {
     width: 500px;
-    background: #000;
+    height: 500px;
+    filter: grayscale(60%);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px #000000eb;;
+    position: absolute; /* Posisi absolute untuk menempatkan di tengah */
+    z-index: 1; /* Supaya berada di bawah pictMoon */
+    overflow: hidden;
+}
+
+.mainIntro .pictPart .pictCover .pictProf{
+  width: auto;
+  height: 500px;
+  background-image: url('bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  transition: scale 500ms ease;
+}
+
+.mainIntro .pictPart .pictCover .pictProf:hover{
+  scale: 1.1;
+}
+
+
+
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.5);
   }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
 
   .mainIntro .deskPart{
-    height: 500px;
-    width: 500px;;
-    background: #fff;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 500px;
     overflow: hidden;
+    gap: 10px;
   }
 
-  .bgIntro{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 0;
+  .mainIntro .deskPart h1,p{
+    color: rgb(211, 211, 211);
+    
   }
-  .bgIntro .bgwave1{
-    width: 100%;
-    height: 100%;
-    background-image: url(wave-haikei.svg);
-    animation: rotate 10s linear infinite;
-;
+
+  .mainIntro .deskPart h1{
+    text-decoration: underline;
+    font-size: 39px;
+  }
+  
+  .mainIntro .deskPart p{
+    font-size: 23px;
+
   }
 
   .second{
-    background: #31363F;
+  display: none;
   }
+
 
 
   
@@ -149,7 +276,7 @@
 
   @keyframes rotate{
     0%{
-      transform: rotate(0deg);
+      transform: rotate(0deg)
     }
     100%{
       transform: rotate(360deg);
